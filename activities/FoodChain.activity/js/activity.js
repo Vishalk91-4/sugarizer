@@ -1,6 +1,7 @@
-﻿
+﻿const { language } = require("../lib/l10ndefine");
 
-define(["sugar-web/activity/activity","webL10n","sugar-web/graphics/radiobuttonsgroup","sugar-web/datastore","tutorial", "sugar-web/env"], function (activity, _l10n, radioButtonsGroup, datastore, tutorial, env) {
+
+define(["sugar-web/activity/activity","l10n","sugar-web/graphics/radiobuttonsgroup","sugar-web/datastore","tutorial", "sugar-web/env"], function (activity, _l10n, radioButtonsGroup, datastore, tutorial, env) {
 	l10n = _l10n;
 	var app = null;
 
@@ -16,15 +17,15 @@ define(["sugar-web/activity/activity","webL10n","sugar-web/graphics/radiobuttons
 			document.getElementById("fr-button")]
 		);
 		document.getElementById("en-button").onclick = function() {
-			l10n.language.code = "en";
+			l10n.init(language);
 			FoodChain.setLocale();
 		};
 		document.getElementById("fr-button").onclick = function() {
-			l10n.language.code = "fr";
+			l10n.init(language);
 			FoodChain.setLocale();
 		};
 		document.getElementById("pt_BR-button").onclick = function() {
-			l10n.language.code = "pt_BR";
+			l10n.init(language);
 			FoodChain.setLocale();
 		};
 		// Launch tutorial
@@ -40,11 +41,7 @@ define(["sugar-web/activity/activity","webL10n","sugar-web/graphics/radiobuttons
 					// Set current language to Sugarizer
 					var defaultLanguage = (typeof chrome != 'undefined' && chrome.app && chrome.app.runtime) ? chrome.i18n.getUILanguage() : navigator.language;
 					var language = environment.user ? environment.user.language : defaultLanguage;
-					if (language == 'fr' || language == 'en') {
-						l10n.language.code = language;
-					} else if (language == 'pt') {
-						l10n.language.code = "pt_BR";
-					}
+					l10n.init(language);
 
 					// Init sound component
 					FoodChain.sound = new FoodChain.Audio();
