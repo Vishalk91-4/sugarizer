@@ -34,7 +34,7 @@ Then, as usual, let's add our new button in the toolbar. To do that we will firs
 	...
 
 	<!-- Toolitems with class="pull-right" will be right aligned -->
-	<sugar-toolitem id="stop-button" title="Stop" class="pull-right" v-on:click="onStop"></sugar-toolitem>
+	<sugar-toolitem id="stop-button" title="Stop" class="pull-right" @click="onStop"></sugar-toolitem>
 	<sugar-toolitem id="help-button" title="Tutorial" class="pull-right"></sugar-toolitem>
 </sugar-toolbar>
 ```
@@ -89,6 +89,14 @@ So, let's create a new Javascript file `lib/tutorial.js` to handle everything re
 
 	<!-- After all script loads -->
 	<script src="js/components/SugarTutorial.js"></script>
+```
+```js
+// Register the component
+const app = Vue.createApp({
+	components: {
+		"sugar-tutorial": SugarTutorial,
+		...
+	},
 ```
 
 ## Localize the tutorial
@@ -157,7 +165,7 @@ Can't wait to test it!
 
 All we need to do now is to call this method on click of the help-button, like this:
 ```html
-<sugar-toolitem id="help-button" title="Tutorial" class="pull-right" v-on:click="onHelp"></sugar-toolitem>
+<sugar-toolitem id="help-button" title="Tutorial" class="pull-right" @click="onHelp"></sugar-toolitem>
 
 ```
 
