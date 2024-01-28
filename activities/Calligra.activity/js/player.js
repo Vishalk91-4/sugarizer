@@ -235,6 +235,7 @@ var Player = {
 			});
 
 			var letter = document.getElementById("letter");
+			console.log(document.getElementById("letter"));
 			letter.addEventListener(downEvent, function(e) {
 				e.preventDefault();
 				vm.drawing = (vm.mode == 'input');
@@ -261,6 +262,7 @@ var Player = {
 			// Draw board
 			var vm = this;
 			var letter = document.getElementById("letter");
+			console.log(document.getElementById("letter"));
 			var context = letter.getContext('2d');
 			context.clearRect(0, 0, vm.zoom*(vm.isText?letter.width:vm.imageSize), vm.size);
 			vm.initComponent(function(images) {
@@ -307,6 +309,7 @@ var Player = {
 			// Draw user stroke
 			var vm = this;
 			var letter = document.getElementById("letter");
+			console.log(document.getElementById("letter"));
 			var context = letter.getContext('2d');
 			context.strokeStyle = app.color.stroke;
 			context.lineWidth = 10;
@@ -390,6 +393,7 @@ var Player = {
 				if (!vm.current || !vm.current.strokes || !vm.current.strokes[vm.current.start] || !vm.current.strokes[vm.current.start][vm.current.stroke]) { return; }
 				var line = vm.current.strokes[vm.current.start][vm.current.stroke];
 				var letter = document.getElementById("letter");
+				console.log(letter)
 				if (!letter) {
 					return;
 				}
@@ -425,7 +429,7 @@ var Player = {
 			if (vm.starts && vm.starts[0].path.length) {
 				// Clear stroke before draw
 				vm.draw();
-
+				console.log(vm.draw());
 				// Create lines set to draw letter
 				vm.current.start = 0;
 				vm.current.stroke = 0;
@@ -469,6 +473,7 @@ var Player = {
 				vm.current.strokes.push(lines);
 			}
 			vm.draw();
+			console.log(vm.draw());
 		},
 
 		onLoad: function() {

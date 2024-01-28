@@ -170,8 +170,7 @@ define(["sugar-web/activity/activity","sugar-web/env","sugar-web/graphics/radiob
             this.clockContainerElem = this.clockCanvasElem.parentNode;
 
             this.bgCanvasElem = document.createElement('canvas');
-            this.clockContainerElem.insertBefore(this.bgCanvasElem,
-                                                 this.clockCanvasElem);
+            this.clockContainerElem.insertBefore(this.bgCanvasElem, this.clockCanvasElem);
 
             var that = this;
             window.onresize = function (event) {

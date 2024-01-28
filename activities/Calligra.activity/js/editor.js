@@ -162,8 +162,8 @@ var Editor = {
 					});
 				} else {
 					document.getElementById("editor-remove").disabled = true;
-					document.getElementById("editor-addpath").disabled = true;
-					document.getElementById("editor-removepath").disabled = true;
+					document.getElementById("editor-addpath").disabled = false;
+					document.getElementById("editor-removepath").disabled = false;
 				}
 			};
 			imageObj.src = vm.item.image;
