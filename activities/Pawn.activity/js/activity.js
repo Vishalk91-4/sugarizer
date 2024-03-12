@@ -41,13 +41,29 @@ var app = new Vue({
 		onJournalLoadError: function(error) {
 			console.log("Error loading from journal");
 		},
-		onNetworkDataReceived(msg) {
-			this.pawns.push(msg.content);
-			this.displayText = this.SugarL10n.get("Played", { name: msg.user.name });
+		onNetworkDataReceived: function(msg) {
+			switch (msg.content.action) {
+				case 'init':
+					this.pawns = msg.content.data;
+					break;
+				case 'update':
+					this.pawns.push(msg.content.data);
+					this.displayText = this.SugarL10n.get("Played", { name: msg.user.name });
+					break;
+			}
 		},
 		
-		onNetworkUserChanged(msg) {
-			// Handles the user-changed event
+		onNetworkUserChanged: function(msg) {
+			// Handling only by the host
+			if (this.SugarPresence.isHost) {
+				this.SugarPresence.sendMessage({
+					user: this.SugarPresence.getUserInfo(),
+					content: {
+						action: 'init',
+						data: this.pawns
+					}
+				});
+			}
 		},
 		initialized: function () {
 			// Sugarizer initialized
@@ -66,7 +82,7 @@ var app = new Vue({
 					content: this.currentenv.user.colorvalue
 				}
 				this.SugarPresence.sendMessage(message);
-			}		
+			}
 		},
 		onStop: function () {
 			// Save current pawns in Journal on Stop

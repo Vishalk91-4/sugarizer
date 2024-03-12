@@ -36,8 +36,8 @@ Vue.component('sugar-presence', {
 			return this.presence != null && this.presence.isConnected();
 		},
 
-		isShared() {
-			return this.presence != null && this.presence.getSharedInfo() != null;
+		isShared: function () {
+			return this.presence != null && this.presence.isShared();
 		},
 
 		getSharedInfo: function () {
