@@ -1,0 +1,6 @@
+[Activity]
+name = Volume3D
+activity_version = 1
+bundle_id = org.sugarlabs.Volume3D
+exec = sugar-activity-web
+icon = activity-icon
